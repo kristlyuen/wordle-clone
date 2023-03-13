@@ -1,15 +1,16 @@
 import React from "react";
 
-function GuessInput() {
+// Pass the handleGuessSubmission function down from App.js.
+function GuessInput({ handleGuessSubmission }) {
 
-  // Set state for guess.
+  // Set state for the submitted guess.
   const [guess, setGuess] = React.useState('')
 
   function handleSubmit(event) {
     // Prevent default refresh on submit.
     event.preventDefault()
-    // Console log guess, as per exercise instructions.
-    console.log({ guess })
+    // Run the handleGuessSubmission function on the guess. 
+    handleGuessSubmission(guess)
     // Reset guess to an empty string to clear input.
     setGuess('')
   }
@@ -31,7 +32,7 @@ function GuessInput() {
         // Require entries to be alpha characters and only 5 characters long. This was added because minLength breaks with toUpperCase.
         pattern="[a-zA-Z]{5}"
         // Add a title to show if the entered guess doesn't match the pattern.
-        title="Please enter a 5 letter word."
+        title="Your guess needs to be 5 letters."
         // Set the guess to the entered text and change it to uppercase.
         onChange={(event) => {
           setGuess(event.target.value.toUpperCase())
