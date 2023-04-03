@@ -6,12 +6,12 @@ import { range } from "../../utils"
 
 function GuessResults({ guesses }) {
   return (
-    // Map through the array of guesses, assigning each a key and displaying the guess. It's ok to use the index as the key because the array will not be rearranged.
+    
     <div className="guess-results">
-      {guesses.map((item, index) => (
-        <p className="guess" key={index}>
-          {item}
-        </p>
+      {/* Use the range function to create an array with the number of allowed guesses for the game. Using a constant here makes it easy to update the number of guesses in the future. Map through that array.*/}
+      {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
+        // Render the Guess component, assigning each a value from the guesses array and a key.
+        <Guess key={num} value={guesses[num]} />
       ))}
     </div>
   )
