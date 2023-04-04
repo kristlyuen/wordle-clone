@@ -1,7 +1,10 @@
 import React from "react";
+
 import { range } from "../../utils";
+import checkGuess from "../../game-helpers"
 
 function Guess({ value }) {
+
   return (
     <p className="guess">
       {/* Create an array with a length of 5. Map through that array.*/}
@@ -18,6 +21,50 @@ function Guess({ value }) {
 
 export default Guess;
 
+// Part 4
+// Inside /src/game-helpers.js, you'll find a helper function, checkGuess. As parameters, it takes a single guess, as well as the correct answer. It returns an array that contains the status for each letter.
+
+// For example:
+// checkGuess('WHALE', 'LEARN');
+// /*
+//   Returns:
+
+//   [
+//     { letter: 'W', status: 'incorrect' },
+//     { letter: 'H', status: 'incorrect' },
+//     { letter: 'A', status: 'correct' },
+//     { letter: 'L', status: 'misplaced' },
+//     { letter: 'E', status: 'misplaced' },
+//   ]
+// */
+
+// There are 3 possible statuses:
+
+// correct — this slot is perfect. It's the right letter in the right place.
+// misplaced — this letter does exist in the word, but in a different slot.
+// incorrect — this letter is not found in the word at all.
+// In the example above, W and H aren't found in the word LEARN, and so they're marked as “incorrect”. A is correct, since it's in the 3rd slot in each word. The other two letters, L and E, are meant to be in other slots.
+
+// These statuses correspond with CSS classes. The correct status has a correct class name, which will apply the green background when applied to a cell. Same thing for misplaced and incorrect.
+
+// Your task is to use this function to validate the user's guesses, and apply the correct CSS classes. The final output for a given guess should look like this:
+
+// <p class="guess">
+//   <span class="cell incorrect">W</span>
+//   <span class="cell incorrect">H</span>
+//   <span class="cell correct">A</span>
+//   <span class="cell misplaced">L</span>
+//   <span class="cell misplaced">E</span>
+// </p>
+
+// Acceptance Criteria:
+
+// Import the checkGuess function from /src/game-helpers.js, and use it to validate each of the user's guesses
+// When rendering the letters in the Guess component, apply the letter's status to the cell element.
+// "Empty" guess slots should have the same markup as before: <span class="cell"></span>.
+
+
+// Part 3
 // Things to know:
 
 // There are two things that should help you tackle this exercise:
