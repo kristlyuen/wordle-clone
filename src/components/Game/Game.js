@@ -26,7 +26,8 @@ function Game() {
     // Render the GuestResults component, passing the guesses prop through.
     // Render the GuessInput component, passing the handleGuessSubmission function through.
     <>
-      <GuestResults guesses={guesses}/>
+      {/* Pass answer down through GuessResults to Guess component. */}
+      <GuestResults guesses={guesses} answer={answer}/>
       <GuessInput handleGuessSubmission={handleGuessSubmission}/>
     </>
   )

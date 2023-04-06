@@ -1,19 +1,37 @@
 import React from "react";
 
 import { range } from "../../utils";
-import checkGuess from "../../game-helpers"
+import { checkGuess } from "../../game-helpers"
 
-function Guess({ value }) {
+// Create new component to set the className of each span. Creating a new component will help make the code easier to understand. Pass the letter and status through as props.
+function Cell({ letter, status }) {
+  // Create a new variable to hold what the class name should be. Set the variable to a conditional that will add the status to the class name only if the status exists. 
+  const className = status ? `cell ${status}` : 'cell'
+
+  return (
+    <span className={className}>
+      {/* Because we're rendering the boxes regardless of if a guess has been entered, we need to set a conditional. If a letter exists, show it. Otherwise, set it to undefined. This is to avoid an error when rendering if a value hasn't been entered. */}
+      {letter ? letter : undefined}
+    </span>   
+  )
+}
+
+// Pass the value and answer in as props. This is why we passed the answer down through the different components. 
+function Guess({ value, answer }) {
+  // Set a variable equal to the results of the checkGuess function.
+  const result = checkGuess(value, answer)
 
   return (
     <p className="guess">
       {/* Create an array with a length of 5. Map through that array.*/}
       {range(5).map((num) => (
-        // For each span, set a key and a className.
-        <span key={num} className="cell">
-          {/* Because we're rendering the boxes regardless of if a value has been entered, we need to set a conditional. If a value exists, show the letter at num location in the value. Otherwise, set it to undefined. This is to avoid an error when rendering if a value hasn't been entered. */}
-          {value ? value[num] : undefined}
-        </span>
+        // Render the Cell component.
+        <Cell 
+          key={num} 
+          // Use conditionals that will only assign letter and status if they exist in the results from the checkGuess function.
+          letter={result ? result[num].letter : undefined}
+          status={result ? result[num].status : undefined}  
+        />
       ))}
     </p>
   )
