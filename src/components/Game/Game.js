@@ -61,6 +61,7 @@ function Game() {
       )}
       {/* Pass the 'answer' prop and 'status' variable down through GuessResults to Guess component. */}
       <GuestResults guesses={guesses} answer={answer}/>
+      {/* Only render the text input if the game status is 'running'. Users shouldn't be able to enter an answer if the status is 'won' or 'lost'. */}
       {gameStatus === 'running' && (
         <GuessInput handleGuessSubmission={handleGuessSubmission}/>
       )}
