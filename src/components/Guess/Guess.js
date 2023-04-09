@@ -21,6 +21,8 @@ function Guess({ value, answer }) {
   // Set a variable equal to the results of the checkGuess function.
   const result = checkGuess(value, answer)
 
+  // Run through checkGuess results to check for 'correct' statuses. Find number of guesses using the length of 'guesses' array. Use a conditional check if the length is 5 and if all of the letter statuses from the checkGuess function are 'correct'. If either is true, the game is over. 
+
   return (
     <p className="guess">
       {/* Create an array with a length of 5. Map through that array.*/}
